@@ -1,0 +1,42 @@
+# Crie um programa que analise uma solicitação de crédito.
+#Feito por Bruna
+idade = int(input("Digite sua idade:"))
+salario_mensal = float(input("Digite seu sálario:"))
+valor_divida_atual = float(input("Digite sua divida:"))
+tempo_emprego = int(input("Digite o tempo de emprego:"))
+valor_solicitado = float(input("Digite o valor solicitado:"))
+numero_parcelas = int(input("Digite o número de parcelas:"))
+
+comprometimento = valor_divida_atual / salario_mensal
+valor_parcela = valor_solicitado / numero_parcelas
+novo_comprometimento =  comprometimento * (valor_parcela / salario_mensal)
+#falta colocar o código para imprimir na tela.
+
+#Feito por Elen
+if (21<= idade <= 65 and
+salario >= 2500 and
+tempo_emprego >= 12 and
+comprometimento_atual <= 30 and
+nova_parcela <= salario * 0,25):
+
+#Falta colocar a parte "aprovada com restrições".
+
+#Feito por Ingrid
+if idade < 21:
+    print("Reprovada")
+    print("Idade menor que 21 anos")
+
+elif salario < 2500:
+    print("Reprovada")
+    print("Salário menor que R$ 2.500")
+
+elif tempo_emprego < 6:
+    print("Reprovada")
+    print("Menos de 6 meses de emprego")
+
+elif comprometimento > 0, 30:
+    print("Reprovada")
+    print("Dívida muito alta")
+
+else:
+    print("Aprovada")
