@@ -40,3 +40,101 @@ elif comprometimento > 0, 30:
 
 else:
     print("Aprovada")
+
+#Calculo completo de imposto de renda
+
+
+
+
+
+
+
+
+
+
+# sistema de avaliação academica
+nota1 = float(input('digite a nota:'))
+nota2 = float(input('digite a nota:'))
+nota3 = float(input('digite a nota:'))
+frequencia = float(input('digite a frequencia:'))
+atividade_entregues = int(input('quantas atividades foram entregues?'))
+total_atividades = int(input('qual o tatal das atividades?'))
+
+media = (nota1 + nota2 + nota3)/3
+percentual_entregue = (atividade_entregues / total_atividades) * 100
+
+print('media:',media,)
+print('percentual de atividades entregues:', percentual_entregue,'%')
+
+if media >= 9 and frequencia >= 90 and atividade_entregues == total_atividades:
+    print('aprovada com excelencia')
+
+elif media >= 7 and frequencia >= 75 and percentual_entregue >= 70:
+    print('aprovada')
+
+elif media >= 5 and media < 7 and frequencia >= 75:
+    print('recuperação')
+    print('requisito que impediu a aprovação: media de', media,'e frequencia de',frequencia,'%')
+
+elif frequencia < 75:
+    print('reprovado por frequencia')
+    print('requisito que impediu a aprovação: frequencia de',frequencia,'%')
+
+else:
+    print('reprovado por nota')
+
+
+    #Cálculo de frete inteligente
+peso = float(input('digite o peso da encomenda:'))
+distancia = float(input('digite a distancia em Km:'))
+
+print('Tipo de entrega: 1(normal), 2(expressa), 3(urgente)')
+tipo_entrega = int(input('qual o tipo de entrega:'))
+
+print('assinatura: 1(sim), 2(não)')
+assinante = int(input('possui assinatura:'))
+
+valor_compra = float(input('qual o valor da compra:'))
+
+adicional_tipo = 0
+adicional_peso = 0
+adicional_distancia = 0
+frete_total = 0
+desconto_porcentagem = 0
+frete_porcentagem = 0
+
+taxa_peso = peso * 2.50
+taxa_distancia = distancia * 0.30
+
+
+print('taxa por peso:', taxa_peso)
+print('taxa por distancia:', taxa_distancia)
+
+
+if tipo_entrega == 1:
+	adicional_tipo = 0
+
+elif tipo_entrega == 2:
+	adicional_tipo = (taxa_peso + taxa_distancia) * 0.30
+
+elif tipo_entrega == 3:
+	adicional_tipo = (taxa_peso + taxa_distancia) * 0.60
+
+if peso > 30:
+	adicional_peso = 80
+
+if distancia > 500:
+	adicional_distancia = 100
+
+frete_total = (taxa_peso + taxa_distancia + adicional_tipo + adicional_peso + adicional_distancia)
+
+if assinante == 1:
+	desconto_porcentagem += 0.15
+
+if valor_compra > 1000:
+	desconto_porcentagem += 0.10
+
+if desconto_porcentagem > 0.20:
+	desconto_porcentagem = 0.20
+
+    # falta terminar 
