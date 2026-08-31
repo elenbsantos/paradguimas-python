@@ -41,6 +41,10 @@ elif comprometimento > 0, 30:
 else:
     print("Aprovada")
 
+
+
+
+
 #Calculo completo de imposto de renda
 
 
@@ -84,6 +88,9 @@ else:
     print('reprovado por nota')
 
 
+   
+   
+   
     #Cálculo de frete inteligente
 peso = float(input('digite o peso da encomenda:'))
 distancia = float(input('digite a distancia em Km:'))
@@ -101,15 +108,10 @@ adicional_peso = 0
 adicional_distancia = 0
 frete_total = 0
 desconto_porcentagem = 0
-frete_porcentagem = 0
+frete_gratuito = 0
 
 taxa_peso = peso * 2.50
 taxa_distancia = distancia * 0.30
-
-
-print('taxa por peso:', taxa_peso)
-print('taxa por distancia:', taxa_distancia)
-
 
 if tipo_entrega == 1:
 	adicional_tipo = 0
@@ -137,4 +139,72 @@ if valor_compra > 1000:
 if desconto_porcentagem > 0.20:
 	desconto_porcentagem = 0.20
 
-    # falta terminar 
+valor_desconto = frete_total * desconto_porcentagem
+frete_final = frete_total - valor_desconto
+
+if assinante == 1 and valor_compra >= 2000 and tipo_entrega == 1 and peso <= 10:
+	frete_gratuito = 1
+
+if frete_gratuito == 1:
+	frete_final = 0
+	print('frete gratuito: sim')
+
+else:
+	print('frete gratuito: não')
+
+print(' FRETE ')
+print('Peso:', peso, 'kg')
+print('Distância:', distancia, 'km')
+print('Valor da compra: R$', valor_compra)
+print('Taxa por peso: R$', taxa_peso)
+print('Taxa por distância: R$', taxa_distancia)
+print('Adicional por tipo de entrega: R$', adicional_tipo)
+print('Adicional por peso: R$', adicional_peso)
+print('Adicional por distância: R$', adicional_distancia)
+print('Frete total: R$', frete_total)
+print('Percentual de desconto:', desconto_porcentagem * 100, '%')
+print('Valor do desconto: R$', valor_desconto)
+print('Frete gratuito:', 'SIM' if frete_gratuito == 1 else 'NÃO')
+print('Frete final: R$', frete_final)
+
+
+
+
+#Diagnóstico financeiro familiar
+renda_mensal = float(input('digite a renda mensal:'))
+gasto_moradia = float(input('digite o gasto com moradia:'))
+gasto_alimentacao = float(input('digite o gasto com alimentação:'))
+gasto_transporte = float(input('digite o gasto com transporte:'))
+gasto_saude = float(input('digite o gasto com saude:'))
+gasto_educacao = float(input('digite o gasto com educacao:'))
+gasto_lazer = float(input('digite o gasto com lazer:'))
+dividas = float(input('digite o valor das dividas:'))
+
+total_despesa = gasto_moradia + gasto_alimentacao + gasto_transporte + gasto_saude + gasto_educacao + gasto_lazer + dividas
+
+saldo_mensal = renda_mensal - total_despesa
+
+percentual_comprometido = (total_despesa/renda_mensal) * 100
+
+percentual_gasto = (dividas/renda_mensal) * 100
+
+if percentual_comprometido <= 70 and percentual_gasto <=20:
+	print('saudavel')
+	print('parabens!, continue controlando seus gastos')
+
+elif percentual_comprometido > 70 and percentual_comprometido <= 85:
+	print('atencao')
+	print('reduza gastos desnecessarios')
+
+elif total_despesa > renda_mensal and saldo_mensal < renda_mensal * -0.20:
+	print('insolvencia')
+	print('reduza o comprometimento da renda')
+
+elif percentual_comprometido > 85 or percentual_gasto > 35:
+	print('critica')
+	print('se organize e reduza os gastos')
+
+print('total das despesas:', total_despesa)
+print('saldo mensal:', saldo_mensal)
+print('percentual comprometido:', percentual_comprometido)
+print('percentual gasto:', percentual_gasto)
