@@ -45,12 +45,47 @@ else:
 
 
 
-#Calculo completo de imposto de renda
+#Cálculo completo de imposto de renda
+salario_bruto = float(input('informe o salario bruto:'))
+dependentes = int(input('quantidade de dependentes:'))
+valor_previdencia = float(input('informe o valor pago em previdencia:'))
+valor_pensao = float(input('informe o valor pago em pensão alimentícia:'))
 
+deducao_dependentes = dependentes * 250
 
+total_deducoes = valor_previdencia + valor_pensao + deducao_dependentes
 
+base_calculo = salario_bruto - valor_previdencia - valor_pensao - deducao_dependentes
 
+if total_deducoes > salario_bruto:
+    print('As deduções são maiores que o salário bruto.')
 
+else:
+    if base_calculo <= 2500:
+        aliquota = 0
+
+    elif base_calculo > 2500 and base_calculo <= 3500:
+        aliquota = 0.075
+
+    elif base_calculo > 3500 and base_calculo <= 5000:
+        aliquota = 0.15
+
+    elif base_calculo > 5000 and base_calculo <= 7500:
+        aliquota = 0.225
+
+    else:
+        aliquota = 0.275
+
+    imposto = base_calculo * aliquota
+
+    salario_liquido = salario_bruto - imposto
+
+    print('salario bruto:', salario_bruto, 'R$')
+    print('total de deduções: ', total_deducoes, 'R$')
+    print('base de calculo:', base_calculo, 'R$')
+    print('aliquota:', aliquota * 100, '%')
+    print('imposto:', imposto, 'R$')
+    print('salario liquido:', salario_liquido, 'R$')
 
 
 
@@ -166,6 +201,7 @@ print('Percentual de desconto:', desconto_porcentagem * 100, '%')
 print('Valor do desconto: R$', valor_desconto)
 print('Frete gratuito:', 'SIM' if frete_gratuito == 1 else 'NÃO')
 print('Frete final: R$', frete_final)
+
 
 
 
