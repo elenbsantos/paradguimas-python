@@ -1,0 +1,76 @@
+#Caixa eletrônico com saldo e tentativas
+senha_correta = '9539'
+saldo = 0
+tentativas = 0
+
+quantidade_saques = 0
+quantidade_deposito = 0
+total_depositado = 0
+total_sacado = 0
+
+while tentativas < 3:
+    senha = input('Digite sua senha: ')
+
+    if senha == senha_correta:
+        print('senha correta')
+        break
+
+    else:
+        tentativas = tentativas + 1
+
+if tentativas == 3:
+    print('\nacesso bloqueado')
+
+opcao = 0
+
+while opcao != 5:
+    print('\nOPCÕES')
+    print('1-consultar saldo')
+    print('2-depositar')
+    print('3-sacar')
+    print('4-exibir quantidade de operações')
+    print('5-encerrar')
+
+    opcao= int(input('escolha uma opção:'))
+
+    if opcao == 1:
+        print('\nsaldo:',saldo)
+
+    elif opcao == 2:
+        deposito = float(input('informe o valor do deposito: '))
+
+        if deposito > 0:
+            saldo = saldo + deposito
+            quantidade_deposito = quantidade_deposito + 1
+            total_depositado = total_depositado + deposito
+
+        else:
+            print('deposito invalido')
+
+    elif opcao == 3:
+        saque = float(input('informe o valor do saque: '))
+
+        if saque > 0 and saque <= saldo:
+            saldo = saldo - saque
+            quantidade_saques = quantidade_saques + 1
+            total_sacado = total_sacado + saque
+
+        else:
+            print('saque invalido')
+
+    elif opcao == 4:
+        print('quantidade de depositos:',quantidade_deposito)
+        print('quantidade de saques:', quantidade_saques)
+
+    elif opcao == 5:
+        print('Operação encerrada')
+
+else:
+        print('opção invalida')
+
+print('\nRELATÓRIO')
+print('saldo final:', saldo)
+print('quantidade de depositos:', quantidade_deposito)
+print('quantidade de saques:', quantidade_saques)
+print('total depositado:', total_depositado)
+print('total sacado:', total_sacado)
