@@ -1,4 +1,4 @@
-#Caixa eletrônico com saldo e tentativas
+# 1-Caixa eletrônico com saldo e tentativas
 senha_correta = '9539'
 saldo = 0
 tentativas = 0
@@ -74,3 +74,59 @@ print('quantidade de depositos:', quantidade_deposito)
 print('quantidade de saques:', quantidade_saques)
 print('total depositado:', total_depositado)
 print('total sacado:', total_sacado)
+
+
+
+# 2-Jogo de adivinhação com níveis
+numero_secreto = 46
+nivel = input('escolha o nivel (facil,medio ou dificil):')
+tentativas = 0
+tentativas_usadas = 0
+numero_digitado = 0
+acertou = False
+
+if nivel == 'facil':
+    tentativas = 10
+
+elif nivel == 'medio':
+    tentativas = 7
+
+elif nivel == 'dificil':
+    tentativas = 5
+
+while tentativas > 0:
+    numero_digitado = int(input('digite um número de 1 a 100: '))
+
+    if numero_digitado < 1 or numero_digitado > 100:
+        print('numero invalido')
+        continue
+
+    tentativas = tentativas - 1
+    tentativas_usadas = tentativas_usadas + 1
+
+    if numero_digitado == numero_secreto:
+        print('você acertou!')
+        acertou = True
+
+
+    elif numero_digitado > numero_secreto:
+        print('o numero digitado é maior que o numero secreto')
+
+    else:
+        print('o numero digitado é menor que o numero secreto')
+
+    print('\ntentativas restantes:', tentativas)
+
+    if acertou:
+        break
+
+if acertou:
+    print('vitoria!')
+
+else:
+    print('derrota!')
+
+print('tentativas usadas:', tentativas_usadas)
+
+pontuacao = tentativas * 100
+print('pontuação:', pontuacao)
