@@ -130,3 +130,89 @@ print('tentativas usadas:', tentativas_usadas)
 
 pontuacao = tentativas * 100
 print('pontuação:', pontuacao)
+
+
+
+# 3-Controle de estoque por menu
+estoque = 100
+estoque_inicial = 100
+estoque_minimo = 0
+
+quantidade_entradas = 0
+quantidade_saidas = 0
+
+total_entradas = 0
+total_saidas = 0
+
+opcao = 0
+
+while opcao != 5:
+    print('        MENU ')
+    print('1-Entrada de mercadoria')
+    print('2-Saida de mercadoria')
+    print('3-Consultar estoque')
+    print('4-Definir estoque minimo')
+    print('5-Encerrar')
+
+    opcao = int(input('escolha uma opção:'))
+
+    if opcao == 1:
+        entrada = int(input('digite a quantidade de mercadorias que entrou:'))
+
+        if entrada > 0:
+            estoque = estoque + entrada
+            quantidade_entradas = quantidade_entradas + 1
+            total_entradas = total_entradas + entrada
+            print('\nentrada realizada')
+
+        else:
+            print('entrada invalida')
+
+    elif opcao == 2:
+        saida = int(input('quantas mercadorias você deseja retirar:'))
+
+        if saida > 0 and saida <= estoque:
+            estoque = estoque - saida
+            quantidade_saidas = quantidade_saidas + 1
+            total_saidas = total_saidas + saida
+            print('\nsaida realizada')
+
+            if estoque < estoque_minimo:
+                print('ALERTA: O estoque esta abaixo do minimo')
+
+        else:
+            print('saida invalida')
+
+    elif opcao == 3:
+        print('estoque atual: ', estoque)
+        print('estoque minimo: ', estoque_minimo)
+
+    elif opcao == 4:
+        estoque_minimo = int(input('defina o estoque minimo: '))
+
+        if estoque_minimo >= 0:
+            print('estoque minimo definido')
+
+        else:
+            print('valor invalido')
+
+    elif opcao == 5:
+        print('operação encerrada')
+
+    else:
+        print('opção invalida')
+
+    quantidade_operacoes = quantidade_entradas + quantidade_saidas
+
+    if estoque < estoque_minimo:
+        situacao = 'estoque abaixo do minimo'
+
+    else:
+        situacao = 'estoque adequado'
+
+    print('\nestoque inicial:', estoque_inicial)
+    print('total entradas:', total_entradas)
+    print('total saidas:', total_saidas)
+    print('estoque final:', estoque)
+    print('quantidade de operações:', quantidade_operacoes)
+    print('situacao do estoque:', situacao)
