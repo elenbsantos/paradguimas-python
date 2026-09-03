@@ -216,3 +216,233 @@ while opcao != 5:
     print('estoque final:', estoque)
     print('quantidade de operações:', quantidade_operacoes)
     print('situacao do estoque:', situacao)
+
+
+
+# 4-Simulação de financiamento
+valor_financiado = float(input('informe o valor financiado:'))
+taxa_mensal = float(input('informe a taxa mensal (%):'))
+parcela_maxima = float(input('informe o valor da parcela maxima:'))
+limite_meses = int(input('informe o limite maximo de meses:'))
+
+saldo = valor_financiado
+meses = 0
+total_pago = 0
+total_juros = 0
+resultado = 0
+
+while saldo > 0 and meses < limite_meses:
+    juros = saldo * (taxa_mensal / 100)
+    saldo = saldo + juros
+    total_juros = total_juros + juros
+
+    if parcela_maxima <= juros:
+        print('a parcela não é o suficiente para reduzir a divida')
+        resultado = 'financiamento não quitado'
+        break
+
+    if parcela_maxima >= saldo:
+        total_pago = total_pago + saldo
+        saldo = 0
+    else:
+        saldo = saldo - parcela_maxima
+        total_pago = total_pago + parcela_maxima
+
+    meses = meses + 1
+
+    print('saldo restante: ', saldo)
+
+    if saldo == 0:
+        resultado = 'Financiamento quitado'
+
+    elif meses == limite_meses:
+        resultado = 'Financiamento não quitado'
+
+print('total de meses: ', meses)
+print('total pago: ', total_pago)
+print('total de juros: ', total_juros)
+print('saldo restante: ', saldo)
+print('resultado da simulação: ', resultado)
+
+
+
+# 5-Sistema de votação
+candidato_a = 0
+candidato_b = 0
+candidato_c = 0
+
+voto_branco = 0
+voto_nulo = 0
+
+total_votos = 0
+opcao = -1
+
+while opcao != 0 :
+    print('\nOPÇÕES')
+    print('1-Candidato A')
+    print('2-Candidato B')
+    print('3-Candidato C')
+    print('4-Voto em branco')
+    print('5-Voto nulo')
+    print('0-encerrar')
+
+    opcao = int(input('escolha uma opção: '))
+
+    if opcao == 1:
+        candidato_a = candidato_a + 1
+        total_votos = total_votos + 1
+
+    elif opcao == 2:
+        candidato_b = candidato_b + 1
+        total_votos = total_votos + 1
+
+    elif opcao == 3:
+        candidato_c = candidato_c + 1
+        total_votos = total_votos + 1
+
+    elif opcao == 4:
+        voto_branco = voto_branco + 1
+        total_votos = total_votos + 1
+
+    elif opcao == 5:
+        voto_nulo = voto_nulo + 1
+        total_votos = total_votos + 1
+
+    elif opcao == 0:
+        print('votação encerrada')
+
+    else:
+        print('opção invalida')
+
+votos_validos = candidato_a + candidato_b + candidato_c
+
+if votos_validos > 0:
+    percentual_a = candidato_a / votos_validos * 100
+    percentual_b = candidato_b / votos_validos * 100
+    percentual_c = candidato_c / votos_validos * 100
+
+else:
+    percentual_a = 0
+    percentual_b = 0
+    percentual_c = 0
+
+votos_invalidos = voto_branco + voto_nulo
+
+if total_votos > 0:
+    percentual_validos = votos_validos / total_votos * 100
+    percentual_invalidos = votos_invalidos / total_votos * 100
+
+else:
+    percentual_validos = 0
+    percentual_invalidos = 0
+
+if total_votos == 0:
+    vencedor = 'nenhum voto registrado'
+
+elif candidato_a > candidato_b and candidato_a > candidato_c:
+    vencedor = 'candidato A'
+
+elif candidato_b > candidato_c and candidato_b > candidato_a:
+    vencedor = 'candidato B'
+
+elif candidato_c > candidato_b and candidato_c > candidato_a:
+    vencedor = 'candidato C'
+
+else:
+    vencedor = 'empate'
+
+if vencedor == 'empate':
+    empate = 'sim'
+
+else:
+    empate = 'não'
+
+print('\nRESULTADO')
+print('candidato A: ', candidato_a)
+print('candidato B: ', candidato_b)
+print('candidato C: ', candidato_c)
+print('votos em branco: ', voto_branco)
+print('votos nulo: ', voto_nulo)
+print('total de votos: ', total_votos)
+
+print('percentual do candidato A: ', percentual_a)
+print('percentual do candidato B: ', percentual_b)
+print('percentual do candidato C: ', percentual_c)
+print('percentual de votos validos: ', percentual_validos, '%')
+print('percentual de votos invalidos: ', percentual_invalidos, '%')
+
+print('vencedor: ', vencedor)
+print('possivel empate: ', empate)
+
+
+
+# 6-Relatório de desempenho de turma
+quantidade_alunos = int(input('Quantidade de alunos: '))
+
+aluno = 1
+aprovados = 0
+recuperacao = 0
+reprovados = 0
+soma_medias = 0
+
+maior_media = 0
+menor_media = 10
+melhor_aluno = ''
+aluno_menor_media = ''
+
+while aluno <= quantidade_alunos:
+    nome = input('\ndigite o nome do aluno: ')
+    nota_1 = int(input('digite a nota 1: '))
+    nota_2 = int(input('digite a nota 2: '))
+    nota_3 = int(input('digite a nota 3: '))
+    frequencia = float(input('digite a frequencia do aluno: '))
+
+    media = (nota_1 + nota_2 + nota_3) / 3
+
+    soma_medias = soma_medias + media
+
+    if media >= 7 and frequencia >= 75:
+        situacao = 'aprovado'
+
+    elif media >= 5 and media < 7 and frequencia >= 75:
+        situacao = 'recuperação'
+
+    else:
+        situacao = 'reprovado'
+
+    if situacao == 'aprovado':
+        aprovados = aprovados + 1
+
+    elif situacao == 'recuperação':
+        recuperacao = recuperacao + 1
+
+    else:
+        reprovados = reprovados + 1
+
+    print('Aluno:', nome)
+    print('Média:', media)
+    print('Situação:', situacao)
+
+    if media > maior_media:
+        maior_media = media
+        melhor_aluno = nome
+
+    if media < menor_media:
+        menor_media = media
+        aluno_menor_media = nome
+
+    aluno = aluno + 1
+
+media_geral = soma_medias / quantidade_alunos
+percentual_aprovacao = aprovados / quantidade_alunos * 100
+
+print('\nRELATORIO FINAL')
+print('media geral:', media_geral)
+print('maior media:', maior_media)
+print('melhor aluno:', melhor_aluno)
+print('menor media:', menor_media)
+print('aluno com menor media:', aluno_menor_media)
+print('quantidade aprovados:', aprovados)
+print('quantidade recuperação:', recuperacao)
+print('quantidade reprovados:', reprovados)
+print('percentual de aprovação:', percentual_aprovacao, '%')
