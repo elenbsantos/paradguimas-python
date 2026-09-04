@@ -446,3 +446,71 @@ print('quantidade aprovados:', aprovados)
 print('quantidade recuperação:', recuperacao)
 print('quantidade reprovados:', reprovados)
 print('percentual de aprovação:', percentual_aprovacao, '%')
+
+
+
+# 7-Análise de vendas de vendedores
+quantidade_vendedores = int(input('digite a quantidade de vendedores:'))
+
+vendedor = 1
+comissao = 0
+total_equipe = 0
+total_comissoes = 0
+maior_venda = 0
+maior_vendedor = ''
+menor_venda = 999999
+menor_vendedor = ''
+
+while vendedor <= quantidade_vendedores:
+    nome = input('\ndigite o nome do vendedor: ')
+    salario_base = float(input('digite o salario do vendedor: '))
+    total_vendido = float(input('digite o total vendido: '))
+    quantidade_vendas = int(input('digite a quantidade de vendas: '))
+
+    if total_vendido <= 10000:
+        comissao = total_vendido * 0.03
+
+    elif total_vendido <= 30000:
+        comissao = total_vendido * 0.05
+
+    else:
+        comissao = total_vendido * 0.08
+
+    if quantidade_vendas > 20:
+        bonus = 500
+
+    else:
+        bonus = 0
+
+    remuneracao_final = salario_base + comissao + bonus
+
+    media_venda = total_vendido / quantidade_vendas
+
+    total_equipe = total_equipe + total_vendido
+
+    total_comissoes = total_comissoes + comissao
+
+    if total_vendido > maior_venda:
+        maior_venda = total_vendido
+        maior_vendedor = nome
+
+    if total_vendido < menor_venda:
+        menor_venda = total_vendido
+        menor_vendedor = nome
+
+    media_equipe = total_equipe / quantidade_vendedores
+
+    print('vendedor:', nome)
+    print('comissão:', comissao)
+    print('bônus:', bonus)
+    print('remuneração final: ', remuneracao_final)
+    print('media por venda: ', media_venda)
+
+    vendedor = vendedor + 1
+
+print('\nRELATORIO FINAL')
+print('total vendido pela equipe: ', total_equipe)
+print('total pago em comissões: ', total_comissoes)
+print('maior vendedor: ', maior_vendedor)
+print('menor vendedor: ', menor_vendedor)
+print('medias de vendas da equipe: ', media_equipe)
