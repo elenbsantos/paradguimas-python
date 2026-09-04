@@ -581,3 +581,85 @@ print('quantidade de pares: ', pares)
 print('quantidade de impares: ', impares)
 print('percentual de positivos: ', percentual_positivos, '%')
 print('percentual de pares: ', percentual_pares, '%')
+
+
+
+# 9-Simulação de crescimento populacional
+opulacao_a = int(input('digite a população inicial da cidade A: '))
+taxa_a = float(input('digite a taxa anual de crescimento da cidade A (%): '))
+
+populacao_b = int(input('digite a população inicial da cidade B: '))
+taxa_b = float(input('digite a taxa anual de crecimento da cidade B (%): '))
+
+quantidade_anos = int(input('digite a quantidade máxima de anos: '))
+
+anos = 0
+ultrapassagem = False
+
+if populacao_a < populacao_b:
+    cidade_menor = 'A'
+
+elif populacao_b < populacao_a:
+    cidade_menor = 'B'
+
+else:
+    cidade_menor = 'nenhuma'
+
+for ano in range(1, quantidade_anos+1):
+    populacao_a = populacao_a + (populacao_a * taxa_a / 100)
+    populacao_b = populacao_b + (populacao_b * taxa_b / 100)
+
+    print('ano', ano)
+    print('população da cidade A: ', populacao_a)
+    print('população da cidade B: ', populacao_b)
+
+    if cidade_menor == 'A' and populacao_a > populacao_b:
+        ultrapassagem = True
+        anos = ano
+        break
+
+    elif cidade_menor == 'B' and populacao_b > populacao_a:
+        ultrapassagem = True
+        anos = ano
+        break
+
+if ultrapassagem == False:
+    anos = quantidade_anos
+
+diferenca = abs(populacao_a - populacao_b)
+
+print('RESULTADO')
+print('quantidade de anos: ', anos)
+print('população final da cidade A: ', populacao_a)
+print('população final da cidade B: ', populacao_b)
+print('diferença final: ', diferenca)
+
+if ultrapassagem == True:
+    print('houve ultrapassagem: sim')
+
+else:
+    print('houve ultrapassagem: não')
+
+
+
+# 10-Gerador de relatório de parcelas
+valor_compra = float(input('digite o valor da compra:'))
+quantidade_parcelas = int(input('digite o quantidade máxima de parcelas:'))
+taxa_juros = float(input('digite a taxa de juros mensal (%):'))
+limite_parcela = float(input('digite o limite para o valor da parcela:'))
+
+parcela = 1
+
+while parcela <= quantidade_parcelas:
+    juros = valor_compra * (taxa_juros / 100) * parcela
+    total_juros = juros
+    valor_total = valor_compra + juros
+    valor_parcela = valor_total / parcela
+
+    print(parcela, 'x de R$', round(valor_parcela, 2), '-Total: R$', round(valor_total, 2))
+    print('total de juros pagos: R$', round(total_juros, 2))
+
+    if valor_parcela < limite_parcela:
+        print('esta opção possui parcela inferior ao limite')
+
+    parcela = parcela + 1
