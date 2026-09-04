@@ -514,3 +514,70 @@ print('total pago em comissões: ', total_comissoes)
 print('maior vendedor: ', maior_vendedor)
 print('menor vendedor: ', menor_vendedor)
 print('medias de vendas da equipe: ', media_equipe)
+
+
+
+# 8-Série estatística sem listas
+quantidade_numeros = int(input('digite a quantidade de números: '))
+
+numero = 1
+
+soma = 0
+positivos = 0
+negativos = 0
+zeros = 0
+pares = 0
+impares = 0
+
+primeiro = True
+
+while numero <= quantidade_numeros:
+    valor = int(input('digite um número: '))
+
+    if primeiro:
+        maior = valor
+        menor = valor
+        primeiro = False
+
+    soma = soma + valor
+
+    if valor > 0:
+        positivos = positivos + 1
+
+    elif valor < 0:
+        negativos = negativos + 1
+
+    else:
+        zeros = zeros + 1
+
+    if valor % 2 == 0:
+        pares = pares + 1
+
+    else:
+        impares = impares + 1
+
+    if valor > maior:
+        maior = valor
+
+    if valor < menor:
+        menor = valor
+
+    numero = numero + 1
+
+media = soma / quantidade_numeros
+
+percentual_positivos = positivos / quantidade_numeros * 100
+percentual_pares = pares / quantidade_numeros * 100
+
+print('\nRESULTADO')
+print('maior valor: ', maior)
+print('menor valor: ', menor)
+print('soma: ', soma)
+print('média: ', media)
+print('quantidade de positivos: ', positivos)
+print('quantidade negativos: ', negativos)
+print('quantidade de zeros ', zeros)
+print('quantidade de pares: ', pares)
+print('quantidade de impares: ', impares)
+print('percentual de positivos: ', percentual_positivos, '%')
+print('percentual de pares: ', percentual_pares, '%')
